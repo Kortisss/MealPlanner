@@ -1,0 +1,25 @@
+package com.example.mealplanner.ui.home
+
+import androidx.lifecycle.*
+import com.example.mealplanner.data.models.Meal
+import com.example.mealplanner.repository.MealRepository
+import kotlinx.coroutines.launch
+import java.lang.IllegalArgumentException
+
+class HomeViewModel(private val repository: MealRepository) : ViewModel() {
+    val allMeals: LiveData<List<Meal>> = repository.allMeals.asLiveData()
+
+    fun insert(meal:Meal) = viewModelScope.launch {
+        repository.insert(meal)
+    }
+}
+class HomeViewModelFactory(private val repository: MealRepository): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
+            @Suppress("UNCHECKED_CAST")
+            return HomeViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+
+}

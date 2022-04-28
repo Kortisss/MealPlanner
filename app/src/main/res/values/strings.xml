@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MealPlanner</string>
+    <string name="bottom_nav_1_item">current plans</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--HomeFragment-->
+    <string name="addWeekButton">addWeekButton</string>
+</resources>
