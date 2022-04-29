@@ -9,5 +9,5 @@ import kotlinx.coroutines.SupervisorJob
 class MealsApplication : Application(){
     private val applicationScope = CoroutineScope(SupervisorJob())
     private val database by lazy { MealsRoomDatabase.getDatabase(this,applicationScope) } //creating only one instance of repository in app
-    val repository by lazy { MealRepository(database.mealDao()) }
+    val repository by lazy { MealRepository(database.mealDao(),database.sectionDao()) }
 }

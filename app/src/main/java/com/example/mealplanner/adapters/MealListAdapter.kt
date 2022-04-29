@@ -11,7 +11,7 @@ import com.example.mealplanner.databinding.MealItemBinding
 class MealListAdapter: ListAdapter<Meal, MealViewHolder>(MealComparator()) {
     inner class MealViewHolder(private val binding: MealItemBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(meal:Meal){
-            binding.textViewMealId.text = meal.id.toString()
+            binding.textViewMealId.text = meal.mealId.toString()
             binding.textViewMealName.text = meal.name
         }
     }
@@ -24,7 +24,7 @@ class MealListAdapter: ListAdapter<Meal, MealViewHolder>(MealComparator()) {
     }
     class MealComparator:DiffUtil.ItemCallback<Meal>() {
         override fun areItemsTheSame(oldItem: Meal, newItem: Meal) =
-            oldItem.id == newItem.id
+            oldItem.mealId == newItem.mealId
         override fun areContentsTheSame(oldItem: Meal, newItem: Meal) =
             oldItem.name == newItem.name
     }

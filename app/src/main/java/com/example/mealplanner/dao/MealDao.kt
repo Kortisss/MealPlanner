@@ -10,8 +10,10 @@ import kotlinx.coroutines.flow.Flow
 interface MealDao {
     @Query("Select * from meal_table")
     fun getMeals(): Flow<List<Meal>>//to observe data changes, later converted to live data
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(meal: Meal)
+
     @Query("DELETE FROM meal_table")
     suspend fun deleteAll()
 }
