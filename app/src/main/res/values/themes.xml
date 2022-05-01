@@ -10,19 +10,53 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">?android:attr/colorPrimary</item>
+
         <!-- Customize your theme here. -->
+    </style>
+    <style name="homeFloatingButton">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="section_item">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="sections_text">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="weeks_recyclerView">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="sections_recyclerView">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="sections_child_RecyclerView">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="section_row">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="fragment_home">
+        <item name="android:background">@color/trans</item>
+    </style>
+    <style name="activity_main">
+        <item name="android:background">@drawable/gradient_background</item>
     </style>
     <style name="week_item">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@drawable/rectangle_outline</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
-    <style name="meal_item">
+    <!--
+
+    --><style name="meal_item">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@drawable/gradient_background</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
     </style>
+
 </resources>

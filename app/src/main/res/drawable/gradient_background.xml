@@ -2,12 +2,14 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item>
     <shape
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:shape="rectangle">
 
         <gradient
             android:type="linear"
-            android:startColor="#00D9E2F7"
-            android:endColor="#8A869AC8"
+            android:startColor="#80FF8600"
+            android:centerColor="#AB7AFF32"
+            android:endColor="#7800D433"
             android:angle="90"
             />
 

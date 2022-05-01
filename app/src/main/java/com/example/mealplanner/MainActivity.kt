@@ -1,6 +1,11 @@
 package com.example.mealplanner
 
+import android.R
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mealplanner.databinding.ActivityMainBinding
 import com.example.mealplanner.ui.home.HomeViewModelFactory
@@ -14,6 +19,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        //Remove notification bar
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        //noActionBar
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.hide()
+
+
         setContentView(binding.root)
     }
 }

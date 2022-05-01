@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 interface SectionDao {
     //@Query("Select * from section_table")
     //fun getSections(): Flow<List<SectionWithMeals>>//to observe data changes, later converted to live data
-
     @Transaction
     @Query("SELECT * FROM section_table")
     fun getSectionWithMeals(): Flow<List<SectionWithMeals>>
@@ -19,4 +18,5 @@ interface SectionDao {
 
     @Query("DELETE FROM section_table")
     suspend fun deleteAll()
+
 }

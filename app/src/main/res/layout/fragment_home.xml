@@ -9,41 +9,65 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <androidx.recyclerview.widget.RecyclerView
+            style="weeks_recyclerView"
+
             android:id="@+id/recyclerViewOfWeeks"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/purple_700"
-            android:clipToPadding="false"
-            tools:listitem="@layout/weeks_item"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="1"
+            tools:listitem="@layout/weeks_item" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currentWeekTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfWeeks" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOfMealsBySection"
+            style="sections_recyclerView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfWeeks"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:itemCount="7"
             tools:listitem="@layout/section_item" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            style="homeFloatingButton"
+            android:id="@+id/addWeekButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/addWeekButton"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            style="homeFloatingButton"
+            android:id="@+id/editWeekButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/editWeekButton"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addWeekButton"
             tools:ignore="ImageContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

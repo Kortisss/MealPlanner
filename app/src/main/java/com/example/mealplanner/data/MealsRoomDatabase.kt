@@ -7,15 +7,16 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mealplanner.dao.MealDao
 import com.example.mealplanner.dao.SectionDao
-import com.example.mealplanner.data.models.Meal
-import com.example.mealplanner.data.models.Section
+import com.example.mealplanner.dao.WeekDao
+import com.example.mealplanner.data.models.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Meal::class, Section::class], version = 1)
+@Database(entities = [Meal::class, Section::class, Weeks::class], version = 1)
 abstract class MealsRoomDatabase : RoomDatabase() {
     abstract fun mealDao(): MealDao
     abstract fun sectionDao(): SectionDao
+    abstract fun weekDao(): WeekDao
     //callback for adding stuff to database
     private class MealsDatabaseCallback(
         private val scope: CoroutineScope
@@ -26,6 +27,7 @@ abstract class MealsRoomDatabase : RoomDatabase() {
                 database -> scope.launch {
                 populateMeal(database.mealDao())
                 populateSection(database.sectionDao())
+                populateWeek(database.weekDao())
                 }
             }
         }
@@ -51,6 +53,9 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             sectionDao.insert(Section(5,"Friday"))
             sectionDao.insert(Section(6,"Saturday"))
             sectionDao.insert(Section(7,"Sunday"))
+        }
+        suspend fun populateWeek(weekDao: WeekDao){
+
         }
     }
     //instance of db

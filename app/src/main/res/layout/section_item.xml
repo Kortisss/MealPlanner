@@ -5,11 +5,13 @@
     android:layout_height="wrap_content">
 
     <TextView
+        style="@style/section_item"
         android:id="@+id/textViewItemSection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="@string/sectionItemTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

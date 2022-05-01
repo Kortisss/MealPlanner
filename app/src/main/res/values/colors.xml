@@ -11,4 +11,19 @@
 
     <!--my-->
     <color name="trans">#00000000 </color>
+
+    <color name="green_800">#49fc52 </color>
+    <color name="green_500">#80FF86 </color>
+    <color name="green_200">#abffaf </color>
+
+    <color name="orange_800">#ff8600 </color>
+    <color name="orange_500">#ffad52 </color>
+    <color name="orange_200">#ffc585 </color>
+
+
+    <color name="mint_800">#2ad471 </color>
+    <color name="mint_500">#60e698 </color>
+    <color name="mint_200">#86e3ad </color>
+
+
 </resources>
