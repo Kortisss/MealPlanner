@@ -6,17 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mealplanner.dao.MealDao
-import com.example.mealplanner.dao.SectionDao
-import com.example.mealplanner.dao.WeekDao
 import com.example.mealplanner.data.models.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Meal::class, Section::class, Weeks::class], version = 1)
+@Database(entities = [
+        Week::class,
+        Meal::class,
+        WeekMealCrossRef::class
+    ],
+    version = 1
+)
+
 abstract class MealsRoomDatabase : RoomDatabase() {
+
     abstract fun mealDao(): MealDao
-    abstract fun sectionDao(): SectionDao
-    abstract fun weekDao(): WeekDao
+
     //callback for adding stuff to database
     private class MealsDatabaseCallback(
         private val scope: CoroutineScope
@@ -25,36 +30,31 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             super.onCreate(database)
             INSTANCE?.let {
                 database -> scope.launch {
-                populateMeal(database.mealDao())
-                populateSection(database.sectionDao())
-                populateWeek(database.weekDao())
+                    populateMonday(database.mealDao())
                 }
             }
         }
-        suspend fun populateMeal(mealDao: MealDao){
-            mealDao.deleteAll()
-            mealDao.insert(Meal("kurczak z ryżem",0)) //0 - brak przyisania , 1:7 - pon,wt,śr,czw,pt,sob,nd
-            mealDao.insert(Meal("sałatka warzywna",1))
-            mealDao.insert(Meal("pączek",2))
-            mealDao.insert(Meal("sałatka",3))
-            mealDao.insert(Meal("jabłko",4))
-            mealDao.insert(Meal("banan",5))
-            mealDao.insert(Meal("banan",5))
-            mealDao.insert(Meal("banan",6))
-            mealDao.insert(Meal("ciatko",6))
-            mealDao.insert(Meal("banan",7))
-        }
-        suspend fun populateSection(sectionDao: SectionDao){
-            sectionDao.deleteAll()
-            sectionDao.insert(Section(1,"Monday"))
-            sectionDao.insert(Section(2,"Tuesday"))
-            sectionDao.insert(Section(3,"Wednesday"))
-            sectionDao.insert(Section(4,"Thursday"))
-            sectionDao.insert(Section(5,"Friday"))
-            sectionDao.insert(Section(6,"Saturday"))
-            sectionDao.insert(Section(7,"Sunday"))
-        }
-        suspend fun populateWeek(weekDao: WeekDao){
+        suspend fun populateMonday(mealDao: MealDao){
+            mealDao.deleteWeek()
+            mealDao.deleteMeal()
+            mealDao.deleteWeekMealCrossRef()
+
+            mealDao.insert(Meal("kurczak"))
+            mealDao.insert(Meal("jabłko"))
+            mealDao.insert(Meal("marchewka"))
+            mealDao.insert(Meal("groszek"))
+
+            mealDao.insert(Week("dania na 1 tydzień"))
+            mealDao.insert(Week("dania na 2 tydzień"))
+            mealDao.insert(Week("dania na 3 tydzień"))
+
+            mealDao.insert(WeekMealCrossRef(1,1))
+            mealDao.insert(WeekMealCrossRef(2,1))
+            mealDao.insert(WeekMealCrossRef(3,1))
+            mealDao.insert(WeekMealCrossRef(3,2))
+            mealDao.insert(WeekMealCrossRef(2,2))
+            mealDao.insert(WeekMealCrossRef(1,3))
+            mealDao.insert(WeekMealCrossRef(2,3))
 
         }
     }

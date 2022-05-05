@@ -10,11 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
-import com.example.mealplanner.adapters.ChildRecyclerAdapter
 import com.example.mealplanner.adapters.MainRecyclerAdapter
 import com.example.mealplanner.adapters.MealListAdapter
 import com.example.mealplanner.adapters.WeeksAdapter
-import com.example.mealplanner.data.models.Weeks
+import com.example.mealplanner.data.models.Week
 import com.example.mealplanner.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -27,28 +26,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val nameList : MutableList<Weeks> = mutableListOf()
-        nameList.add(Weeks("week1"))
-        nameList.add(Weeks("week2"))
-        nameList.add(Weeks("week3"))
-        nameList.add(Weeks("week3"))
-        nameList.add(Weeks("week3"))
-        nameList.add(Weeks("week3"))
-        nameList.add(Weeks("week3"))
-        nameList.add(Weeks("week3"))
 
-        val weeksAdapter = WeeksAdapter(nameList, WeeksAdapter.OnClickListener{ click ->
-            Toast.makeText(requireContext(),click.name, Toast.LENGTH_SHORT).show()
-        })
+
+        //val mealsAdapter = MealListAdapter()
         val sectionMainAdapter = MainRecyclerAdapter()
-
-        binding.apply {
-            recyclerViewOfWeeks.apply {
-                adapter = weeksAdapter
-                layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            }
-        }
-
         binding.apply {
             recyclerViewOfMealsBySection.apply {
                 adapter = sectionMainAdapter
@@ -56,12 +37,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             }
         }
+        homeViewModel.allWeeks.observe(viewLifecycleOwner){
+            val weeksAdapter = WeeksAdapter(it, WeeksAdapter.OnClickListener{ click ->
+                Toast.makeText(requireContext(),click.weekId.toString(), Toast.LENGTH_SHORT).show()
+            })
+            binding.apply {
+                recyclerViewOfWeeks.apply {
+                    adapter = weeksAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                }
+            }
+        }
 
-        //homeViewModel.allMeals.observe(viewLifecycleOwner){meals ->
-        //    meals.let { mealsAdapter.submitList(it) }
-        //}
-
-        homeViewModel.sectionMeals.observe(viewLifecycleOwner){sections ->
+        homeViewModel.allWeeksWithMeals.observe(viewLifecycleOwner){sections ->
             sections.let {
                 sectionMainAdapter.submitList(it)
             }

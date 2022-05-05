@@ -1,18 +1,42 @@
 package com.example.mealplanner.dao
+
 import androidx.room.*
-import com.example.mealplanner.data.models.Meal
+import com.example.mealplanner.data.models.*
+import com.example.mealplanner.data.models.relations.MealWithWeek
+import com.example.mealplanner.data.models.relations.WeekWithMeals
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MealDao {
-    @Query("Select * from meal_table")
-    fun getMeals(): Flow<List<Meal>>//to observe data changes, later converted to live data
+    //get
+    @Transaction
+    @Query("Select * from Week")
+    fun getWeekWithMeals(): Flow<List<WeekWithMeals>>
 
+    @Transaction
+    @Query("Select * from Meal")
+    fun getMealWithWeek(): Flow<List<MealWithWeek>>
+
+    @Query("select * from Week")
+    fun getWeeks(): Flow<List<Week>>
+
+    //insert
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(meal: Meal)
 
-    @Query("DELETE FROM meal_table")
-    suspend fun deleteAll()
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(week: Week)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(weekMealCrossRef: WeekMealCrossRef)
 
+    //delete
+    @Query("DELETE FROM Meal")
+    suspend fun deleteMeal()
+
+    @Query("DELETE FROM Week")
+    suspend fun deleteWeek()
+
+    @Query("DELETE FROM WeekMealCrossRef")
+    suspend fun deleteWeekMealCrossRef()
 }
