@@ -10,9 +10,12 @@ import kotlinx.coroutines.flow.Flow
 
 class MealRepository(private val mealDao: MealDao) { //repository is connected only to MealDao
 
-    val allWeeksWithMeals : Flow<List<WeekWithMeals>> = mealDao.getWeekWithMeals()
-    val allMealWithWeek : Flow<List<MealWithWeek>> = mealDao.getMealWithWeek()
-    val allWeeks: Flow<List<Week>> = mealDao.getWeeks()
+    val allWeeksWithMeals = mealDao.getWeekWithMeals()
+    val allMealWithWeek = mealDao.getMealWithWeek()
+    val allWeeks = mealDao.getWeeks()
+    fun loadWeekWithMealsById(id: Long?) = mealDao.getWeekWithMealsById(id!!)
+
+
     @Suppress
     @WorkerThread
     suspend fun insert(week : Week){

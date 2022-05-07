@@ -2,9 +2,12 @@ package com.example.mealplanner.ui.home
 
 import androidx.lifecycle.*
 import com.example.mealplanner.data.models.Week
-import com.example.mealplanner.data.models.relations.MealWithWeek
 import com.example.mealplanner.data.models.relations.WeekWithMeals
 import com.example.mealplanner.repository.MealRepository
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.toCollection
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: MealRepository) : ViewModel() {
@@ -12,11 +15,16 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
     val allWeeksWithMeals: LiveData<List<WeekWithMeals>> = repository.allWeeksWithMeals.asLiveData()
     //val allMealWithWeek: LiveData<List<MealWithWeek>> = repository.allMealWithWeek.asLiveData()
     val allWeeks: LiveData<List<Week>> = repository.allWeeks.asLiveData()
+    val setWeekToDisplay = MutableLiveData<Long>().apply { value = 2 }
 
+    private var _weekById = MutableLiveData<List<WeekWithMeals>>()
+    var weekById : LiveData<List<WeekWithMeals>> = _weekById
+    fun getWeekWithMeals(id: Long) = viewModelScope.launch() {
+        _weekById.value = repository.loadWeekWithMealsById(id).first()
+    }
     fun insert(week: Week) = viewModelScope.launch {
         repository.insert(week)
     }
-
   //  fun insert(monday: Monday) = viewModelScope.launch {
   //          repository.insert(monday)
   //  }

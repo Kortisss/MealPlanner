@@ -14,9 +14,14 @@ interface MealDao {
     fun getWeekWithMeals(): Flow<List<WeekWithMeals>>
 
     @Transaction
+    @Query("SELECT * FROM Week WHERE weekId = :id")
+    fun getWeekWithMealsById(id: Long): Flow<List<WeekWithMeals>>
+
+    @Transaction
     @Query("Select * from Meal")
     fun getMealWithWeek(): Flow<List<MealWithWeek>>
 
+    @Transaction
     @Query("select * from Week")
     fun getWeeks(): Flow<List<Week>>
 

@@ -15,6 +15,8 @@ class MainRecyclerAdapter : ListAdapter<WeekWithMeals,MainRecyclerAdapter.MainVi
             //val weekDaysList = arrayOf("","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
             val weekName = "week" + s.week.weekId
             binding.textViewSectionName.text = weekName
+
+
             binding.childRecyclerView.adapter = ChildRecyclerAdapter(s.meals)
         }
     }
