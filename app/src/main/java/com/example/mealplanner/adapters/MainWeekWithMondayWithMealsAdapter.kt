@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mealplanner.data.models.relations.WeekWithMondayWithMeals
 import com.example.mealplanner.databinding.SectionRowBinding
 
-class MainWeekWithMondayWithMealsAdapter : ListAdapter<WeekWithMondayWithMeals,MainWeekWithMondayWithMealsAdapter.WeekViewHolder>(WeekComparator()) {
+class MainWeekWithMondayWithMealsAdapter : ListAdapter<WeekWithMondayWithMeals,MainWeekWithMondayWithMealsAdapter.WeekViewHolder>(MondayWeekComparator()) {
 
     inner class WeekViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(s: WeekWithMondayWithMeals){
@@ -29,7 +29,7 @@ class MainWeekWithMondayWithMealsAdapter : ListAdapter<WeekWithMondayWithMeals,M
     ) {
         holder.bind(getItem(position))
     }
-    class WeekComparator : DiffUtil.ItemCallback<WeekWithMondayWithMeals>() {
+    class MondayWeekComparator : DiffUtil.ItemCallback<WeekWithMondayWithMeals>() {
         override fun areItemsTheSame(
             oldItem: WeekWithMondayWithMeals,
             newItem: WeekWithMondayWithMeals

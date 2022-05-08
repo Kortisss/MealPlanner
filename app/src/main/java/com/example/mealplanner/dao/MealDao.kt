@@ -5,6 +5,7 @@ import com.example.mealplanner.data.models.*
 import com.example.mealplanner.data.models.relations.MealWithWeek
 import com.example.mealplanner.data.models.relations.WeekWithMeals
 import com.example.mealplanner.data.models.relations.WeekWithMondayWithMeals
+import com.example.mealplanner.data.models.relations.WeekWithTuesdayWithMeals
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -30,6 +31,10 @@ interface MealDao {
     @Query("Select * from Week where weekId = :id")
     fun getWeekWithMondayWithMealsById(id: Long): Flow<List<WeekWithMondayWithMeals>>
 
+    @Transaction
+    @Query("Select * from Week where weekId = :id")
+    fun getWeekWithTuesdayWithMealsById(id: Long): Flow<List<WeekWithTuesdayWithMeals>>
+
 
     //insert
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -45,7 +50,13 @@ interface MealDao {
     suspend fun insert(mondayMealCrossRef: MondayMealCrossRef)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(tuesdayMealCrossRef: TuesdayMealCrossRef)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(monday: Monday)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(tuesday: Tuesday)
 
     //delete
     @Query("DELETE FROM Meal")
@@ -62,4 +73,8 @@ interface MealDao {
 
     @Query("DELETE FROM Monday")
     suspend fun deleteMonday()
+
+    @Query("DELETE FROM Tuesday")
+    suspend fun deleteTuesday()
+
 }

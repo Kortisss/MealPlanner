@@ -3,8 +3,6 @@ package com.example.mealplanner.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mealplanner.data.models.relations.MondayWithMeals
 import com.example.mealplanner.databinding.SectionRowBinding
