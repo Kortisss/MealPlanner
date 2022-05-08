@@ -9,14 +9,12 @@ import com.example.mealplanner.data.models.relations.WeekWithMeals
 import com.example.mealplanner.databinding.SectionRowBinding
 
 class MainRecyclerAdapter : ListAdapter<WeekWithMeals,MainRecyclerAdapter.MainViewHolder>(SectionComparator()) {
-    inner class MainViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
+    inner class MainViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(s: WeekWithMeals){
             //val weekDaysList = arrayOf("","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
             val weekName = "week" + s.week.weekId
             binding.textViewSectionName.text = weekName
-
-
             binding.childRecyclerView.adapter = ChildRecyclerAdapter(s.meals)
         }
     }

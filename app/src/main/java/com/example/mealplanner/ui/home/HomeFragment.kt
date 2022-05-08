@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
 import com.example.mealplanner.adapters.MainRecyclerAdapter
+import com.example.mealplanner.adapters.MainWeekWithMondayWithMealsAdapter
 import com.example.mealplanner.adapters.MealListAdapter
 import com.example.mealplanner.adapters.WeeksAdapter
 import com.example.mealplanner.data.models.Week
@@ -33,11 +34,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         //val mealsAdapter = MealListAdapter()
 
+
+
         homeViewModel.allWeeks.observe(viewLifecycleOwner){
             val weeksAdapter = WeeksAdapter(it, WeeksAdapter.OnClickListener{ click ->
                 homeViewModel.setWeekToDisplay.value = click.weekId
                 lifecycleScope.launch(){
                     homeViewModel.weekById.let { homeViewModel.getWeekWithMeals(click.weekId) }
+                    homeViewModel.weekWithMondayWithMeals.let { homeViewModel.getWeekWithMondayWithMeals(click.weekId) }
                 }
 
 
@@ -52,12 +56,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
-
+        homeViewModel.weekWithMondayWithMeals.observe(viewLifecycleOwner){
+            val weekWithMondayAdapter = MainWeekWithMondayWithMealsAdapter()
+            weekWithMondayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfMealsBySection.apply {
+                    adapter = weekWithMondayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+        /*
         homeViewModel.weekById.observe(viewLifecycleOwner){
             val sectionMainAdapter = MainRecyclerAdapter()
-
             sectionMainAdapter.submitList(it)
-
             binding.apply {
                 recyclerViewOfMealsBySection.apply {
                     adapter = sectionMainAdapter
@@ -66,6 +79,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+        */
         return binding.root
     }
     override fun onDestroyView() {

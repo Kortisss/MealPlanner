@@ -13,7 +13,9 @@ import kotlinx.coroutines.launch
 @Database(entities = [
         Week::class,
         Meal::class,
-        WeekMealCrossRef::class
+        WeekMealCrossRef::class,
+        Monday::class,
+        MondayMealCrossRef::class
     ],
     version = 1
 )
@@ -38,15 +40,26 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             mealDao.deleteWeek()
             mealDao.deleteMeal()
             mealDao.deleteWeekMealCrossRef()
+            mealDao.deleteMondayMealCrossRef()
 
             mealDao.insert(Meal("kurczak"))
             mealDao.insert(Meal("jabłko"))
             mealDao.insert(Meal("marchewka"))
             mealDao.insert(Meal("groszek"))
 
+            mealDao.insert(Monday(1))
+            mealDao.insert(Monday(2))
+
+            mealDao.insert(MondayMealCrossRef(1,1))
+            mealDao.insert(MondayMealCrossRef(1,2))
+            mealDao.insert(MondayMealCrossRef(1,3))
+            mealDao.insert(MondayMealCrossRef(2,1))
+            mealDao.insert(MondayMealCrossRef(2,2))
+
             mealDao.insert(Week("dania na 1 tydzień"))
             mealDao.insert(Week("dania na 2 tydzień"))
-            mealDao.insert(Week("dania na 3 tydzień"))
+        /*
+
 
             mealDao.insert(WeekMealCrossRef(1,1))
             mealDao.insert(WeekMealCrossRef(2,1))
@@ -55,7 +68,7 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             mealDao.insert(WeekMealCrossRef(2,2))
             mealDao.insert(WeekMealCrossRef(1,3))
             mealDao.insert(WeekMealCrossRef(2,3))
-
+        */
         }
     }
     //instance of db
