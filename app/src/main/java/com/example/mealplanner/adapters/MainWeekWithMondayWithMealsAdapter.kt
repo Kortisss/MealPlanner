@@ -1,6 +1,7 @@
 package com.example.mealplanner.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +14,7 @@ class MainWeekWithMondayWithMealsAdapter : ListAdapter<WeekWithMondayWithMeals,M
     inner class WeekViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(s: WeekWithMondayWithMeals){
             val weekName = "week "+ s.week.weekId
+            binding.textViewSectionName.textAlignment= View.TEXT_ALIGNMENT_CENTER
             binding.textViewSectionName.text = weekName
             binding.childRecyclerView.adapter = ChildWeekWithMondayWithMealsAdapter(s.monday)
         }

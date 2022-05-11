@@ -5,6 +5,7 @@ import com.example.mealplanner.data.models.Week
 import com.example.mealplanner.data.models.relations.WeekWithMeals
 import com.example.mealplanner.data.models.relations.WeekWithMondayWithMeals
 import com.example.mealplanner.data.models.relations.WeekWithTuesdayWithMeals
+import com.example.mealplanner.data.models.relations.WeekWithWednesdayWithMeals
 import com.example.mealplanner.repository.MealRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
@@ -38,7 +39,12 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
         _weekWithTuesdayWithMeals.value = repository.loadWeekWithTuesdayWithMealsById(id).first()
     }
     //weekWithWednesday
-
+    private var _weekWithWednesdayWithMeals = MutableLiveData<List<WeekWithWednesdayWithMeals>>()
+    var weekWithWednesdayWithMeals: LiveData<List<WeekWithWednesdayWithMeals>> = _weekWithWednesdayWithMeals
+    fun getWeekWithWednesdayWithMeals(id: Long) = viewModelScope.launch {
+        _weekWithWednesdayWithMeals.value = repository.loadWeekWithWednesdayWithMealsById(id).first()
+    }
+    //weekWithThursday
 
 
     //fun insert(week: Week) = viewModelScope.launch {

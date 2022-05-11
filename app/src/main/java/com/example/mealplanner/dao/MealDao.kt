@@ -2,10 +2,7 @@ package com.example.mealplanner.dao
 
 import androidx.room.*
 import com.example.mealplanner.data.models.*
-import com.example.mealplanner.data.models.relations.MealWithWeek
-import com.example.mealplanner.data.models.relations.WeekWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithMondayWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithTuesdayWithMeals
+import com.example.mealplanner.data.models.relations.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -35,6 +32,10 @@ interface MealDao {
     @Query("Select * from Week where weekId = :id")
     fun getWeekWithTuesdayWithMealsById(id: Long): Flow<List<WeekWithTuesdayWithMeals>>
 
+    @Transaction
+    @Query("Select * from Week where weekId = :id")
+    fun getWeekWithWednesdayWithMealsById(id: Long): Flow<List<WeekWithWednesdayWithMeals>>
+
 
     //insert
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -53,10 +54,16 @@ interface MealDao {
     suspend fun insert(tuesdayMealCrossRef: TuesdayMealCrossRef)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(wednesdayMealCrossRef: WednesdayMealCrossRef)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(monday: Monday)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(tuesday: Tuesday)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(wednesday: Wednesday)
 
     //delete
     @Query("DELETE FROM Meal")
@@ -76,5 +83,8 @@ interface MealDao {
 
     @Query("DELETE FROM Tuesday")
     suspend fun deleteTuesday()
+
+    @Query("DELETE FROM Wednesday")
+    suspend fun deleteWednesday()
 
 }

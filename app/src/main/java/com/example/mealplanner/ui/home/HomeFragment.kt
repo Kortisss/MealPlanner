@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
 import com.example.mealplanner.adapters.MainWeekWithMondayWithMealsAdapter
 import com.example.mealplanner.adapters.MainWeekWithTuesdayWithMealsAdapter
+import com.example.mealplanner.adapters.MainWeekWithWednesdayWithMealsAdapter
 import com.example.mealplanner.adapters.WeeksAdapter
 import com.example.mealplanner.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.weekById.let { homeViewModel.getWeekWithMeals(click.weekId) }
                     homeViewModel.weekWithMondayWithMeals.let { homeViewModel.getWeekWithMondayWithMeals(click.weekId) }
                     homeViewModel.weekWithTuesdayWithMeals.let { homeViewModel.getWeekWithTuesdayWithMeals(click.weekId) }
+                    homeViewModel.weekWithWednesdayWithMeals.let { homeViewModel.getWeekWithWednesdayWithMeals(click.weekId)}
                 }
                 Toast.makeText(requireContext(),click.weekId.toString(), Toast.LENGTH_SHORT).show()
             })
@@ -53,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 recyclerViewOfMondayMeals.apply {
                     adapter = weekWithMondayAdapter
                     layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                    this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
                 }
             }
         }
@@ -64,7 +66,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 recyclerViewOfTuesdayMeals.apply {
                     adapter = weekWithTuesdayAdapter
                     layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                    this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+        homeViewModel.weekWithWednesdayWithMeals.observe(viewLifecycleOwner){
+            val weekWithWednesdayAdapter = MainWeekWithWednesdayWithMealsAdapter()
+            weekWithWednesdayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfWednesdayMeals.apply {
+                    adapter = weekWithWednesdayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
                 }
             }
         }

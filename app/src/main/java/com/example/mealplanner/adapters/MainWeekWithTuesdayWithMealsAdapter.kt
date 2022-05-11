@@ -1,6 +1,7 @@
 package com.example.mealplanner.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,6 +13,7 @@ class MainWeekWithTuesdayWithMealsAdapter : ListAdapter<WeekWithTuesdayWithMeals
 
     inner class TuesdayWeekViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(s: WeekWithTuesdayWithMeals){
+            binding.textViewSectionName.visibility=View.GONE
             val weekName = "week "+ s.week.weekId
             binding.textViewSectionName.text = weekName
             binding.childRecyclerView.adapter = ChildWeekWithTuesdayWithMealsAdapter(s.tuesday)

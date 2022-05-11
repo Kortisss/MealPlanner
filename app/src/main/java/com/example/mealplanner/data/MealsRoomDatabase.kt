@@ -17,7 +17,9 @@ import kotlinx.coroutines.launch
         Monday::class,
         MondayMealCrossRef::class,
         Tuesday::class,
-        TuesdayMealCrossRef::class
+        TuesdayMealCrossRef::class,
+        Wednesday::class,
+        WednesdayMealCrossRef::class
     ],
     version = 1
 )
@@ -45,6 +47,7 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             mealDao.deleteMondayMealCrossRef()
             mealDao.deleteMonday()
             mealDao.deleteTuesday()
+            mealDao.deleteWednesday()
 
             //meal
             mealDao.insert(Meal("kurczak"))
@@ -72,6 +75,18 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             mealDao.insert(TuesdayMealCrossRef(2,1))
             mealDao.insert(TuesdayMealCrossRef(2,1))
             mealDao.insert(TuesdayMealCrossRef(2,4))
+
+            //wednesday
+            mealDao.insert(Wednesday(1))
+            mealDao.insert(Wednesday(2))
+
+            mealDao.insert(WednesdayMealCrossRef(1,1))
+            mealDao.insert(WednesdayMealCrossRef(1,2))
+            mealDao.insert(WednesdayMealCrossRef(1,4))
+            mealDao.insert(WednesdayMealCrossRef(2,2))
+            mealDao.insert(WednesdayMealCrossRef(2,3))
+            mealDao.insert(WednesdayMealCrossRef(2,4))
+
 
             //week
             mealDao.insert(Week("dania na 1 tydzień"))

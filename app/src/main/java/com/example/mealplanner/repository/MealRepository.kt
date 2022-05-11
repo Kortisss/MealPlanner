@@ -16,7 +16,7 @@ class MealRepository(private val mealDao: MealDao) { //repository is connected o
     fun loadWeekWithMealsById(id: Long?) = mealDao.getWeekWithMealsById(id!!)
     fun loadWeekWithMondayWithMealsById(id:Long?) = mealDao.getWeekWithMondayWithMealsById(id!!)
     fun loadWeekWithTuesdayWithMealsById(id:Long?) = mealDao.getWeekWithTuesdayWithMealsById(id!!)
-
+    fun loadWeekWithWednesdayWithMealsById(id:Long?) = mealDao.getWeekWithWednesdayWithMealsById(id!!)
 
     @Suppress
     @WorkerThread
