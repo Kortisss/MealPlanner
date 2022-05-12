@@ -81,6 +81,55 @@
                     app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfTuesdayMeals"
                     tools:itemCount="1"
                     tools:listitem="@layout/section_item" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOfThursdayMeals"
+                    style="sections_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfWednesdayMeals"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/section_item" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOfFridayMeals"
+                    style="sections_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfThursdayMeals"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/section_item" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOfSaturdayMeals"
+                    style="sections_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfFridayMeals"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/section_item" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOfSundayMeals"
+                    style="sections_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewOfSaturdayMeals"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/section_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

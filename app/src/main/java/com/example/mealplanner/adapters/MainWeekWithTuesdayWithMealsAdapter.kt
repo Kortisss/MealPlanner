@@ -38,8 +38,4 @@ class MainWeekWithTuesdayWithMealsAdapter : ListAdapter<WeekWithTuesdayWithMeals
             newItem: WeekWithTuesdayWithMeals
         ) = oldItem == newItem
     }
-
-
-
-
 }

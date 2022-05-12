@@ -2,10 +2,7 @@ package com.example.mealplanner.ui.home
 
 import androidx.lifecycle.*
 import com.example.mealplanner.data.models.Week
-import com.example.mealplanner.data.models.relations.WeekWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithMondayWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithTuesdayWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithWednesdayWithMeals
+import com.example.mealplanner.data.models.relations.*
 import com.example.mealplanner.repository.MealRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
@@ -14,11 +11,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: MealRepository) : ViewModel() {
-    //mealsRepo
-    val allWeeksWithMeals: LiveData<List<WeekWithMeals>> = repository.allWeeksWithMeals.asLiveData()
-    //val allMealWithWeek: LiveData<List<MealWithWeek>> = repository.allMealWithWeek.asLiveData()
     val allWeeks: LiveData<List<Week>> = repository.allWeeks.asLiveData()
-    //val weekWithMondayWithMeals: LiveData<List<WeekWithMondayWithMeals>> = repository.weekWithMondayWithMeals.asLiveData()
     val setWeekToDisplay = MutableLiveData<Long>().apply { value = 1 }
 
     private var _weekById = MutableLiveData<List<WeekWithMeals>>()
@@ -45,7 +38,29 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
         _weekWithWednesdayWithMeals.value = repository.loadWeekWithWednesdayWithMealsById(id).first()
     }
     //weekWithThursday
-
+    private var _weekWithThursdayWithMeals = MutableLiveData<List<WeekWithThursdayWithMeals>>()
+    var weekWithThursdayWithMeals: LiveData<List<WeekWithThursdayWithMeals>> = _weekWithThursdayWithMeals
+    fun getWeekWithThursdayWithMeals(id: Long) = viewModelScope.launch {
+        _weekWithThursdayWithMeals.value = repository.loadWeekWithThursdayWithMealsById(id).first()
+    }
+    //weekWithFriday
+    private var _weekWithFridayWithMeals = MutableLiveData<List<WeekWithFridayWithMeals>>()
+    var weekWithFridayWithMeals: LiveData<List<WeekWithFridayWithMeals>> = _weekWithFridayWithMeals
+    fun getWeekWithFridayWithMeals(id: Long) = viewModelScope.launch {
+        _weekWithFridayWithMeals.value = repository.loadWeekWithFridayWithMealsById(id).first()
+    }
+    //weekWithSaturday
+    private var _weekWithSaturdayWithMeals = MutableLiveData<List<WeekWithSaturdayWithMeals>>()
+    var weekWithSaturdayWithMeals: LiveData<List<WeekWithSaturdayWithMeals>> = _weekWithSaturdayWithMeals
+    fun getWeekWithSaturdayWithMeals(id: Long) = viewModelScope.launch {
+        _weekWithSaturdayWithMeals.value = repository.loadWeekWithSaturdayWithMealsById(id).first()
+    }
+    //weekWithSunday
+    private var _weekWithSundayWithMeals = MutableLiveData<List<WeekWithSundayWithMeals>>()
+    var weekWithSundayWithMeals: LiveData<List<WeekWithSundayWithMeals>> = _weekWithSundayWithMeals
+    fun getWeekWithSundayWithMeals(id: Long) = viewModelScope.launch {
+        _weekWithSundayWithMeals.value = repository.loadWeekWithSundayWithMealsById(id).first()
+    }
 
     //fun insert(week: Week) = viewModelScope.launch {
     //    repository.insert(week)

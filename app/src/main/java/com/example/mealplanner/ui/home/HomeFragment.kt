@@ -8,13 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
-import com.example.mealplanner.adapters.MainWeekWithMondayWithMealsAdapter
-import com.example.mealplanner.adapters.MainWeekWithTuesdayWithMealsAdapter
-import com.example.mealplanner.adapters.MainWeekWithWednesdayWithMealsAdapter
-import com.example.mealplanner.adapters.WeeksAdapter
+import com.example.mealplanner.adapters.*
 import com.example.mealplanner.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
@@ -37,7 +33,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.weekById.let { homeViewModel.getWeekWithMeals(click.weekId) }
                     homeViewModel.weekWithMondayWithMeals.let { homeViewModel.getWeekWithMondayWithMeals(click.weekId) }
                     homeViewModel.weekWithTuesdayWithMeals.let { homeViewModel.getWeekWithTuesdayWithMeals(click.weekId) }
-                    homeViewModel.weekWithWednesdayWithMeals.let { homeViewModel.getWeekWithWednesdayWithMeals(click.weekId)}
+                    homeViewModel.weekWithWednesdayWithMeals.let { homeViewModel.getWeekWithWednesdayWithMeals(click.weekId) }
+                    homeViewModel.weekWithThursdayWithMeals.let { homeViewModel.getWeekWithThursdayWithMeals(click.weekId) }
+                    homeViewModel.weekWithFridayWithMeals.let { homeViewModel.getWeekWithFridayWithMeals(click.weekId) }
+                    homeViewModel.weekWithSaturdayWithMeals.let { homeViewModel.getWeekWithSaturdayWithMeals(click.weekId) }
+                    homeViewModel.weekWithSundayWithMeals.let { homeViewModel.getWeekWithSundayWithMeals(click.weekId) }
                 }
                 Toast.makeText(requireContext(),click.weekId.toString(), Toast.LENGTH_SHORT).show()
             })
@@ -81,6 +81,54 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+        homeViewModel.weekWithThursdayWithMeals.observe(viewLifecycleOwner){
+            val weekWithThursdayAdapter = MainWeekWithThursdayWithMealsAdapter()
+            weekWithThursdayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfThursdayMeals.apply {
+                    adapter = weekWithThursdayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+        homeViewModel.weekWithFridayWithMeals.observe(viewLifecycleOwner){
+            val weekWithFridayAdapter = MainWeekWithFridayWithMealsAdapter()
+            weekWithFridayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfFridayMeals.apply {
+                    adapter = weekWithFridayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+
+        homeViewModel.weekWithSaturdayWithMeals.observe(viewLifecycleOwner){
+            val weekWithSaturdayAdapter = MainWeekWithSaturdayWithMealsAdapter()
+            weekWithSaturdayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfSaturdayMeals.apply {
+                    adapter = weekWithSaturdayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+
+        homeViewModel.weekWithSundayWithMeals.observe(viewLifecycleOwner){
+            val weekWithSundayAdapter = MainWeekWithSundayWithMealsAdapter()
+            weekWithSundayAdapter.submitList(it)
+            binding.apply {
+                recyclerViewOfSundayMeals.apply {
+                    adapter = weekWithSundayAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                    //this.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+        }
+
+
         /*
         homeViewModel.weekById.observe(viewLifecycleOwner){
             val sectionMainAdapter = MainRecyclerAdapter()
