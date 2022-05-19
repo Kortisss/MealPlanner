@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 class MealRepository(private val mealDao: MealDao) { //repository is connected only to MealDao
     //get
     val allWeeks = mealDao.getWeeks()
+    val allMeals = mealDao.getMeals()
     fun loadWeekWithMealsById(id: Long?) = mealDao.getWeekWithMealsById(id!!)
 
     fun loadWeekWithMondayWithMealsById(id:Long?) = mealDao.getWeekWithMondayWithMealsById(id!!)
@@ -23,7 +24,47 @@ class MealRepository(private val mealDao: MealDao) { //repository is connected o
     fun loadWeekWithSaturdayWithMealsById(id:Long?) = mealDao.getWeekWithSaturdayWithMealsById(id!!)
     fun loadWeekWithSundayWithMealsById(id:Long?) = mealDao.getWeekWithSundayWithMealsById(id!!)
 
+    val loadLastMondayId = mealDao.getLastMondayId()
+    val loadLastTuesdayId = mealDao.getLastTuesdayId()
+    val loadLastWednesdayId = mealDao.getLastWednesdayId()
+    val loadLastThursdayId = mealDao.getLastThursdayId()
+    val loadLastFridayId = mealDao.getLastFridayId()
+    val loadLastSaturdayId = mealDao.getLastSaturdayId()
+    val loadLastSundayId = mealDao.getLastSundayId()
+
+    val loadLastWeekId = mealDao.getLastWeekId()
+
     //insert
+    @Suppress
+    @WorkerThread
+    suspend fun insertWholeWeek(
+        mondayMeals: List<MondayMealCrossRef>,
+        tuesdayMeals: List<TuesdayMealCrossRef>,
+        wednesdayMeals: List<WednesdayMealCrossRef>,
+        thursdayMeals: List<ThursdayMealCrossRef>,
+        fridayMeals: List<FridayMealCrossRef>,
+        saturdayMeals: List<SaturdayMealCrossRef>,
+        sundayMeals: List<SundayMealCrossRef>
+    ){
+        mealDao.insertWholeWeek(mondayMeals, tuesdayMeals, wednesdayMeals, thursdayMeals, fridayMeals, saturdayMeals, sundayMeals)
+    }
+    @Suppress
+    @WorkerThread
+    suspend fun insertAllMondayMealsCrossRef(mondayMeals: List<MondayMealCrossRef>){
+        mealDao.insertAllMondayMealCrossRef(mondayMeals)
+    }
+
+    @Suppress
+    @WorkerThread
+    suspend fun insertDayweeks(monday: Monday, tuesday: Tuesday, wednesday: Wednesday, thursday: Thursday, friday: Friday, saturday: Saturday, sunday: Sunday){
+        mealDao.insert(monday)
+        mealDao.insert(tuesday)
+        mealDao.insert(wednesday)
+        mealDao.insert(thursday)
+        mealDao.insert(friday)
+        mealDao.insert(saturday)
+        mealDao.insert(sunday)
+    }
     @Suppress
     @WorkerThread
     suspend fun insert(week : Week){
@@ -101,4 +142,9 @@ class MealRepository(private val mealDao: MealDao) { //repository is connected o
         mealDao.insert(sundayMealCrossRef)
     }
 
+    @Suppress
+    @WorkerThread
+    suspend fun deleteMonday(monday: Monday){
+        mealDao.deleteMonday()
+    }
 }

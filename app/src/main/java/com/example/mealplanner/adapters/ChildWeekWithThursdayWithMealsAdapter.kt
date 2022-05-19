@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mealplanner.data.models.relations.ThursdayWithMeals
-import com.example.mealplanner.databinding.SectionRowBinding
+import com.example.mealplanner.databinding.InnerSectionRowBinding
 
 class ChildWeekWithThursdayWithMealsAdapter(private val list:List<ThursdayWithMeals>) : RecyclerView.Adapter<ChildWeekWithThursdayWithMealsAdapter.ThursdayViewHolder>() {
-    inner class ThursdayViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ThursdayViewHolder(private val binding: InnerSectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(s: ThursdayWithMeals){
             binding.textViewSectionName.text = "Thursday"
@@ -19,7 +19,7 @@ class ChildWeekWithThursdayWithMealsAdapter(private val list:List<ThursdayWithMe
         parent: ViewGroup,
         viewType: Int
     ): ThursdayViewHolder {
-        return ThursdayViewHolder(SectionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ThursdayViewHolder(InnerSectionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(

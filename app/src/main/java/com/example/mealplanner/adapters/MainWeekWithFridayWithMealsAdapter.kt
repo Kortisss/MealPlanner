@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mealplanner.data.models.Meal
 import com.example.mealplanner.data.models.relations.WeekWithFridayWithMeals
 import com.example.mealplanner.databinding.SectionRowBinding
 
@@ -16,11 +17,23 @@ class MainWeekWithFridayWithMealsAdapter : ListAdapter<WeekWithFridayWithMeals, 
             binding.textViewSectionName.visibility= View.GONE
             val weekName = "week "+ s.week.weekId
             binding.textViewSectionName.text = weekName
-            binding.childRecyclerView.adapter = ChildWeekWithFridayWithMealsAdapter(s.friday)
+        }
+        fun bindBreakfast(s: Meal){
+            binding.textViewItemSection.text = s.name
+        }
+        fun bindLunch(s: Meal){
+            binding.textViewItemSection2.text = s.name
+        }
+        fun bindDinner(s: Meal){
+            binding.textViewItemSection3.text = s.name
         }
     }
     override fun onBindViewHolder(holder: FridayWeekViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val currentItem = getItem(position)
+        holder.bind(currentItem)
+        holder.bindBreakfast(currentItem.friday[position].meals[0])
+        holder.bindLunch(currentItem.friday[position].meals[1])
+        holder.bindDinner(currentItem.friday[position].meals[2])
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,

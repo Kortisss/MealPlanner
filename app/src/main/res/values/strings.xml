@@ -4,9 +4,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--HomeFragment-->
-    <string name="addWeekButton">addWeekButton</string>
+    <string name="addWeekButton">Add week</string>
     <string name="weekItemText">week1</string>
     <string name="currentWeekTextView">CURRENT WEEK</string>
     <string name="sectionItemTextView">monday</string>
     <string name="editWeekButton">editWeekButton</string>
+    <string name="addMealLabel">Select meal</string>
+    <string name="Monday">Monday</string>
+    <string name="Breakfast">Breakfast</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Lunch">Lunch</string>
+    <string name="Dinner">Dinner</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
 </resources>

@@ -21,6 +21,14 @@ interface MealDao {
     @Transaction
     @Query("select * from Week")
     fun getWeeks(): Flow<List<Week>>
+    @Transaction
+    @Query("select * from Meal")
+    fun getMeals(): Flow<List<Meal>>
+
+    //getting last id of week
+    @Transaction
+    @Query("SELECT weekId FROM Week ORDER BY weekId DESC LIMIT 1")
+    fun getLastWeekId(): Flow<Long>
 
     @Transaction
     @Query("Select * from Week where weekId = :id")
@@ -44,16 +52,39 @@ interface MealDao {
     @Query("Select * from Week where weekId = :id")
     fun getWeekWithSundayWithMealsById(id: Long): Flow<List<WeekWithSundayWithMeals>>
 
+    //getting last id of weekdays
+    @Transaction
+    @Query("SELECT mondayId FROM Monday ORDER BY mondayId DESC LIMIT 1")
+    fun getLastMondayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT tuesdayId FROM Tuesday ORDER BY tuesdayId DESC LIMIT 1")
+    fun getLastTuesdayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT wednesdayId FROM Wednesday ORDER BY wednesdayId DESC LIMIT 1")
+    fun getLastWednesdayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT thursdayId FROM Thursday ORDER BY thursdayId DESC LIMIT 1")
+    fun getLastThursdayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT fridayId FROM Friday ORDER BY fridayId DESC LIMIT 1")
+    fun getLastFridayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT saturdayId FROM Saturday ORDER BY saturdayId DESC LIMIT 1")
+    fun getLastSaturdayId(): Flow<Long>
+    @Transaction
+    @Query("SELECT sundayId FROM Sunday ORDER BY sundayId DESC LIMIT 1")
+    fun getLastSundayId(): Flow<Long>
 
     //insert
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertWholeWeek(week:Week,
-                                MondayMeals: List<MondayMealCrossRef>,
-                                wednesdayMeals: List<WednesdayMealCrossRef>,
-                                thursdayMeals: List<ThursdayMealCrossRef>,
-                                friday: List<FridayMealCrossRef>,
-                                saturday: List<SaturdayMealCrossRef>,
-                                sunday: List<SundayMealCrossRef>
+    suspend fun insertWholeWeek(
+        mondayMeals: List<MondayMealCrossRef>,
+        tuesdayMeals: List<TuesdayMealCrossRef>,
+        wednesdayMeals: List<WednesdayMealCrossRef>,
+        thursdayMeals: List<ThursdayMealCrossRef>,
+        fridayMeals: List<FridayMealCrossRef>,
+        saturdayMeals: List<SaturdayMealCrossRef>,
+        sundayMeals: List<SundayMealCrossRef>
     )
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -63,6 +94,10 @@ interface MealDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)//todo: toDelete
     suspend fun insert(weekMealCrossRef: WeekMealCrossRef)//todo: toDelete
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAllMondayMealCrossRef(allMondayMealCrossRef: List<MondayMealCrossRef>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(mondayMealCrossRef: MondayMealCrossRef)
