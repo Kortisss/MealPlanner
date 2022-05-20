@@ -7,4 +7,8 @@ import androidx.room.PrimaryKey
 data class Meal (
     val name: String,
     @PrimaryKey(autoGenerate = true) val mealId: Long = 0
-)
+){
+    override fun toString(): String {
+        return name
+    }
+}

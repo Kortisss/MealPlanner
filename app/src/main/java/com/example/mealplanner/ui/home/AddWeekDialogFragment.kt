@@ -87,65 +87,95 @@ class AddWeekDialogFragment(
         spinnerSunday3 = view.findViewById(R.id.spinnerMealsSunday3)
         btnAddWeek = view.findViewById(R.id.buttonAddWeek)
 
-        val mealNameList = mutableListOf<String>()
-        mealNameList.add("")
-        mealNameList.addAll(mealList.map { s -> s.name })
-        val adapterMealList = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealNameList)
+        val mealListBase = mutableListOf<Meal>()
+        mealListBase.add(Meal("",999))
+        mealListBase.addAll(mealList)
 
-        spinnerMonday1.adapter = adapterMealList
-        spinnerMonday2.adapter = adapterMealList
-        spinnerMonday3.adapter = adapterMealList
-        spinnerTuesday1.adapter = adapterMealList
-        spinnerTuesday2.adapter = adapterMealList
-        spinnerTuesday3.adapter = adapterMealList
-        spinnerWednesday1.adapter = adapterMealList
-        spinnerWednesday2.adapter = adapterMealList
-        spinnerWednesday3.adapter = adapterMealList
-        spinnerThursday1.adapter = adapterMealList
-        spinnerThursday2.adapter = adapterMealList
-        spinnerThursday3.adapter = adapterMealList
-        spinnerFriday1.adapter = adapterMealList
-        spinnerFriday2.adapter = adapterMealList
-        spinnerFriday3.adapter = adapterMealList
-        spinnerSaturday1.adapter = adapterMealList
-        spinnerSaturday2.adapter = adapterMealList
-        spinnerSaturday3.adapter = adapterMealList
-        spinnerSunday1.adapter = adapterMealList
-        spinnerSunday2.adapter = adapterMealList
-        spinnerSunday3.adapter = adapterMealList
+        val mealListMonday2 = mutableListOf<Meal>()
+        val mealListMonday3 = mutableListOf<Meal>()
+        val adapterMealListMonday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        var adapterMealListMonday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListMonday2)
+        val adapterMealListMonday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListMonday3)
+
+        val mealListTuesday2 = mutableListOf<Meal>()
+        val mealListTuesday3 = mutableListOf<Meal>()
+        val adapterMealListTuesday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListTuesday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListTuesday2)
+        val adapterMealListTuesday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListTuesday3)
+
+        val mealListWednesday2 = mutableListOf<Meal>()
+        val mealListWednesday3 = mutableListOf<Meal>()
+        val adapterMealListWednesday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListWednesday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListWednesday2)
+        val adapterMealListWednesday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListWednesday3)
+
+        val mealListThursday2 = mutableListOf<Meal>()
+        val mealListThursday3 = mutableListOf<Meal>()
+        val adapterMealListThursday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListThursday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListThursday2)
+        val adapterMealListThursday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListThursday3)
+
+        val mealListFriday2 = mutableListOf<Meal>()
+        val mealListFriday3 = mutableListOf<Meal>()
+        val adapterMealListFriday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListFriday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListFriday2)
+        val adapterMealListFriday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListFriday3)
+
+        val mealListSaturday2 = mutableListOf<Meal>()
+        val mealListSaturday3 = mutableListOf<Meal>()
+        val adapterMealListSaturday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListSaturday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListSaturday2)
+        val adapterMealListSaturday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListSaturday3)
+
+        val mealListSunday2 = mutableListOf<Meal>()
+        val mealListSunday3 = mutableListOf<Meal>()
+        val adapterMealListSunday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
+        val adapterMealListSunday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListSunday2)
+        val adapterMealListSunday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListSunday3)
+
+        spinnerMonday1.adapter = adapterMealListMonday1
+        spinnerMonday2.adapter = adapterMealListMonday2
+        spinnerMonday3.adapter = adapterMealListMonday3
+        spinnerTuesday1.adapter = adapterMealListTuesday1
+        spinnerTuesday2.adapter = adapterMealListTuesday2
+        spinnerTuesday3.adapter = adapterMealListTuesday3
+        spinnerWednesday1.adapter = adapterMealListWednesday1
+        spinnerWednesday2.adapter = adapterMealListWednesday2
+        spinnerWednesday3.adapter = adapterMealListWednesday3
+        spinnerThursday1.adapter = adapterMealListThursday1
+        spinnerThursday2.adapter = adapterMealListThursday2
+        spinnerThursday3.adapter = adapterMealListThursday3
+        spinnerFriday1.adapter = adapterMealListFriday1
+        spinnerFriday2.adapter = adapterMealListFriday2
+        spinnerFriday3.adapter = adapterMealListFriday3
+        spinnerSaturday1.adapter = adapterMealListSaturday1
+        spinnerSaturday2.adapter = adapterMealListSaturday2
+        spinnerSaturday3.adapter = adapterMealListSaturday3
+        spinnerSunday1.adapter = adapterMealListSunday1
+        spinnerSunday2.adapter = adapterMealListSunday2
+        spinnerSunday3.adapter = adapterMealListSunday3
 
         val spinnersPositionCheck = MutableList(21) { false }
+        var currentSelectedItem: Meal
 
-        fun changeAdapter(adapter: ArrayAdapter<String>, position: Int){
-
-//            adapter.clear()
-//            val list = mutableListOf<String>()
-//            list.add("")
-//            list.addAll((mealList.map { n -> n.name }))
-//            list.removeAt(position)
-//            adapter.addAll(list)
-            adapter.remove(mealNameList[position])
-            adapter.notifyDataSetChanged()
-
-            println()
+        fun changeNextAdapter(position: Int, previousAdapter:ArrayAdapter<Meal> , nextAdapter:  ArrayAdapter<Meal>, previousList: MutableList<Meal>){
+            currentSelectedItem = previousAdapter.getItem(position)!!
+            nextAdapter.clear()
+            nextAdapter.addAll(previousList)
+            nextAdapter.remove(currentSelectedItem)
         }
-
-        //todo: Zmieniać listę tak żeby po wybraniu w spinnermonday1 wybrany element nie pokazał się w spinnermonday2 i 3
-        //todo: z powodu integracji bazy danych posiłki nie mogą się powtarzać
         spinnerMonday1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
               if (position != 0){
-
                   spinnersPositionCheck[0] = true
                     if (mondayList.size == 1){
                         mondayList.removeAt(0)
                     }
-                  mondayList.add(MondayMealCrossRef(freshMondayId,mealList[position-1].mealId))
-
+                  mondayList.add(MondayMealCrossRef(freshMondayId, (parentView!!.selectedItem as Meal).mealId))
+                  changeNextAdapter(position, adapterMealListMonday1, adapterMealListMonday2, mealListBase)
                   spinnerMonday2.isEnabled = true
               }else{
                   spinnersPositionCheck[0] = false
-
               }
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -156,19 +186,18 @@ class AddWeekDialogFragment(
         spinnerMonday2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
                 if (position != 0){
-
                     spinnersPositionCheck[1] = true
                     if (mondayList.size == 2) {
                         mondayList.removeAt(1)
                     }
-                    mondayList.add(MondayMealCrossRef(freshMondayId,mealList[position-1].mealId))
+                    mondayList.add(MondayMealCrossRef(freshMondayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListMonday2,adapterMealListMonday3, mealListMonday2)
                     spinnerMonday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[1] = false
                 }
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // your code here
             }
         }
         spinnerMonday3.isEnabled = false
@@ -179,14 +208,13 @@ class AddWeekDialogFragment(
                     if (mondayList.size == 3) {
                         mondayList.removeAt(2)
                     }
-                    mondayList.add(MondayMealCrossRef(freshMondayId,mealList[position-1].mealId))
+                    mondayList.add(MondayMealCrossRef(freshMondayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerTuesday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[2] = false
                 }
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // your code here
             }
         }
         spinnerTuesday1.isEnabled = false
@@ -197,7 +225,8 @@ class AddWeekDialogFragment(
                     if (tuesdayList.size == 1) {
                         tuesdayList.removeAt(0)
                     }
-                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId,mealList[position-1].mealId))
+                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListTuesday1, adapterMealListTuesday2, mealListBase)
                     spinnerTuesday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[3] = false
@@ -215,7 +244,8 @@ class AddWeekDialogFragment(
                     if (tuesdayList.size == 2) {
                         tuesdayList.removeAt(1)
                     }
-                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId,mealList[position-1].mealId))
+                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListTuesday2, adapterMealListTuesday3, mealListTuesday2)
                     spinnerTuesday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[4] = false
@@ -233,7 +263,7 @@ class AddWeekDialogFragment(
                     if (tuesdayList.size == 3) {
                         tuesdayList.removeAt(2)
                     }
-                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId,mealList[position-1].mealId))
+                    tuesdayList.add(TuesdayMealCrossRef(freshTuesdayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerWednesday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[5] = false
@@ -251,7 +281,8 @@ class AddWeekDialogFragment(
                     if (wednesdayList.size == 1) {
                         wednesdayList.removeAt(0)
                     }
-                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId,mealList[position-1].mealId))
+                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListWednesday1, adapterMealListWednesday2, mealListBase)
                     spinnerWednesday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[6] = false
@@ -269,7 +300,8 @@ class AddWeekDialogFragment(
                     if (wednesdayList.size == 2) {
                         wednesdayList.removeAt(1)
                     }
-                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId,mealList[position-1].mealId))
+                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListWednesday2, adapterMealListWednesday3, mealListWednesday2)
                     spinnerWednesday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[7] = false
@@ -287,7 +319,7 @@ class AddWeekDialogFragment(
                     if (wednesdayList.size == 3) {
                         wednesdayList.removeAt(2)
                     }
-                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId,mealList[position-1].mealId))
+                    wednesdayList.add(WednesdayMealCrossRef(freshWednesdayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerThursday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[8] = false
@@ -305,7 +337,8 @@ class AddWeekDialogFragment(
                     if (thursdayList.size == 1) {
                         thursdayList.removeAt(0)
                     }
-                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId,mealList[position-1].mealId))
+                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListThursday1, adapterMealListThursday2, mealListBase)
                     spinnerThursday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[9] = false
@@ -323,7 +356,8 @@ class AddWeekDialogFragment(
                     if (thursdayList.size == 2) {
                         thursdayList.removeAt(1)
                     }
-                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId,mealList[position-1].mealId))
+                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListThursday2, adapterMealListThursday3, mealListThursday2)
                     spinnerThursday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[10] = false
@@ -341,7 +375,7 @@ class AddWeekDialogFragment(
                     if (thursdayList.size == 3) {
                         thursdayList.removeAt(2)
                     }
-                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId,mealList[position-1].mealId))
+                    thursdayList.add(ThursdayMealCrossRef(freshThursdayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerFriday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[11] = false
@@ -359,7 +393,8 @@ class AddWeekDialogFragment(
                     if (fridayList.size == 1) {
                         fridayList.removeAt(0)
                     }
-                    fridayList.add(FridayMealCrossRef(freshFridayId,mealList[position-1].mealId))
+                    fridayList.add(FridayMealCrossRef(freshFridayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListFriday1, adapterMealListFriday2, mealListBase)
                     spinnerFriday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[12] = false
@@ -377,7 +412,8 @@ class AddWeekDialogFragment(
                     if (fridayList.size == 2) {
                         fridayList.removeAt(1)
                     }
-                    fridayList.add(FridayMealCrossRef(freshFridayId,mealList[position-1].mealId))
+                    fridayList.add(FridayMealCrossRef(freshFridayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListFriday2, adapterMealListFriday3, mealListFriday2)
                     spinnerFriday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[13] = false
@@ -395,7 +431,7 @@ class AddWeekDialogFragment(
                     if (fridayList.size == 3) {
                         fridayList.removeAt(2)
                     }
-                    fridayList.add(FridayMealCrossRef(freshFridayId,mealList[position-1].mealId))
+                    fridayList.add(FridayMealCrossRef(freshFridayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerSaturday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[14] = false
@@ -413,7 +449,8 @@ class AddWeekDialogFragment(
                     if (saturdayList.size == 1) {
                         saturdayList.removeAt(0)
                     }
-                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId,mealList[position-1].mealId))
+                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListSaturday1, adapterMealListSaturday2, mealListBase)
                     spinnerSaturday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[15] = false
@@ -431,7 +468,8 @@ class AddWeekDialogFragment(
                     if (saturdayList.size == 2) {
                         saturdayList.removeAt(1)
                     }
-                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId,mealList[position-1].mealId))
+                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListSaturday2, adapterMealListSaturday3, mealListSaturday2)
                     spinnerSaturday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[16] = false
@@ -449,7 +487,7 @@ class AddWeekDialogFragment(
                     if (saturdayList.size == 3) {
                         saturdayList.removeAt(2)
                     }
-                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId,mealList[position-1].mealId))
+                    saturdayList.add(SaturdayMealCrossRef(freshSaturdayId, (parentView!!.selectedItem as Meal).mealId))
                     spinnerSunday1.isEnabled = true
                 }else{
                     spinnersPositionCheck[17] = false
@@ -467,7 +505,8 @@ class AddWeekDialogFragment(
                     if (sundayList.size == 1) {
                         sundayList.removeAt(0)
                     }
-                    sundayList.add(SundayMealCrossRef(freshSundayId,mealList[position-1].mealId))
+                    sundayList.add(SundayMealCrossRef(freshSundayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListSaturday1, adapterMealListSunday2, mealListBase)
                     spinnerSunday2.isEnabled = true
                 }else{
                     spinnersPositionCheck[18] = false
@@ -485,7 +524,8 @@ class AddWeekDialogFragment(
                     if (sundayList.size == 2) {
                         sundayList.removeAt(1)
                     }
-                    sundayList.add(SundayMealCrossRef(freshSundayId,mealList[position-1].mealId))
+                    sundayList.add(SundayMealCrossRef(freshSundayId, (parentView!!.selectedItem as Meal).mealId))
+                    changeNextAdapter(position, adapterMealListSunday2, adapterMealListSunday3, mealListSunday2)
                     spinnerSunday3.isEnabled = true
                 }else{
                     spinnersPositionCheck[19] = false
@@ -503,7 +543,7 @@ class AddWeekDialogFragment(
                     if (sundayList.size == 3) {
                         sundayList.removeAt(2)
                     }
-                    sundayList.add(SundayMealCrossRef(freshSundayId,mealList[position-1].mealId))
+                    sundayList.add(SundayMealCrossRef(freshSundayId, (parentView!!.selectedItem as Meal).mealId))
                 }else{
                     spinnersPositionCheck[20] = false
                 }
