@@ -94,7 +94,7 @@ class AddWeekDialogFragment(
         val mealListMonday2 = mutableListOf<Meal>()
         val mealListMonday3 = mutableListOf<Meal>()
         val adapterMealListMonday1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListBase)
-        var adapterMealListMonday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListMonday2)
+        val adapterMealListMonday2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListMonday2)
         val adapterMealListMonday3 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, mealListMonday3)
 
         val mealListTuesday2 = mutableListOf<Meal>()
@@ -556,37 +556,38 @@ class AddWeekDialogFragment(
         btnAddWeek.setOnClickListener{
             //tutaj warunki co do poprawości danych w spinnerach
             //potem dodaje cos do bazy
-                if (spinnersPositionCheck.containsAll(listOf(true))){
-                    homeViewModel.insertDayweeks(Monday(), Tuesday(), Wednesday(), Thursday(),
-                        Friday(), Saturday(), Sunday()
-                    )
+            if (spinnersPositionCheck.all { it }){
+                homeViewModel.insertDayweeks(Monday(), Tuesday(), Wednesday(), Thursday(),
+                    Friday(), Saturday(), Sunday()
+                )
 //            inserting  week + lists with meals
-                    homeViewModel.insertOneWeek(Week("tydzień $freshWeekId opis"))
-
-                    homeViewModel.insertWholeWeek(
-                        mondayList,
-                        tuesdayList,
-                        wednesdayList,
-                        thursdayList,
-                        fridayList,
-                        saturdayList,
-                        sundayList
-                    )
-                    dismiss()
-                }else{
-                    Toast.makeText(requireContext(), "Fill in the blanks before save!", Toast.LENGTH_SHORT).show()
-                }
+                homeViewModel.insertOneWeek(Week("tydzień $freshWeekId opis"))
+                homeViewModel.insertWholeWeek(
+                    mondayList,
+                    tuesdayList,
+                    wednesdayList,
+                    thursdayList,
+                    fridayList,
+                    saturdayList,
+                    sundayList
+                )
+                dismiss()
+                Toast.makeText(requireContext(), "przeszło", Toast.LENGTH_SHORT).show()
 //            inserting one day of the week
-            
-//            homeViewModel.insertWholeWeek(
-//                listOf(MondayMealCrossRef(freshMondayId,2),MondayMealCrossRef(freshMondayId,5),MondayMealCrossRef(freshMondayId,1)),
-//                listOf(TuesdayMealCrossRef(freshTuesdayId,3),TuesdayMealCrossRef(freshTuesdayId,2),TuesdayMealCrossRef(freshTuesdayId,4)),
-//                listOf(WednesdayMealCrossRef(freshWednesdayId,4),WednesdayMealCrossRef(freshWednesdayId,1),WednesdayMealCrossRef(freshWednesdayId,2)),
-//                listOf(ThursdayMealCrossRef(freshThursdayId,1),ThursdayMealCrossRef(freshThursdayId,5),ThursdayMealCrossRef(freshThursdayId,6)),
-//                listOf(FridayMealCrossRef(freshFridayId,2),FridayMealCrossRef(freshFridayId,5),FridayMealCrossRef(freshFridayId,1)),
-//                listOf(SaturdayMealCrossRef(freshSaturdayId,4), SaturdayMealCrossRef(freshSaturdayId,6), SaturdayMealCrossRef(freshSaturdayId,1)),
-//                listOf(SundayMealCrossRef(freshSundayId,1), SundayMealCrossRef(freshSundayId,2),SundayMealCrossRef(freshSundayId,5))
-//            )
+                homeViewModel.insertWholeWeek(
+                    listOf(MondayMealCrossRef(freshMondayId,2),MondayMealCrossRef(freshMondayId,5),MondayMealCrossRef(freshMondayId,1)),
+                    listOf(TuesdayMealCrossRef(freshTuesdayId,3),TuesdayMealCrossRef(freshTuesdayId,2),TuesdayMealCrossRef(freshTuesdayId,4)),
+                    listOf(WednesdayMealCrossRef(freshWednesdayId,4),WednesdayMealCrossRef(freshWednesdayId,1),WednesdayMealCrossRef(freshWednesdayId,2)),
+                    listOf(ThursdayMealCrossRef(freshThursdayId,1),ThursdayMealCrossRef(freshThursdayId,5),ThursdayMealCrossRef(freshThursdayId,6)),
+                    listOf(FridayMealCrossRef(freshFridayId,2),FridayMealCrossRef(freshFridayId,5),FridayMealCrossRef(freshFridayId,1)),
+                    listOf(SaturdayMealCrossRef(freshSaturdayId,4), SaturdayMealCrossRef(freshSaturdayId,6), SaturdayMealCrossRef(freshSaturdayId,1)),
+                    listOf(SundayMealCrossRef(freshSundayId,1), SundayMealCrossRef(freshSundayId,2),SundayMealCrossRef(freshSundayId,5))
+                )
+                Toast.makeText(requireContext(), "Week has been added", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(), "Fill in the blanks before save!", Toast.LENGTH_SHORT).show()
+            }
+
         }
             homeViewModel.lastMondayId.observe(viewLifecycleOwner){
                 freshMondayId = it + 1

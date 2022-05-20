@@ -1,5 +1,6 @@
 package com.example.mealplanner.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,12 @@ import com.example.mealplanner.databinding.SectionRowBinding
 
 class MainWeekWithWednesdayWithMealsAdapter : ListAdapter<WeekWithWednesdayWithMeals,MainWeekWithWednesdayWithMealsAdapter.WednesdayViewHolder>(WednesdayWeekComparator()) {
     inner class WednesdayViewHolder(private val binding: SectionRowBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(s: WeekWithWednesdayWithMeals){
             binding.textViewSectionName.visibility= View.GONE
             val weekName = "week "+ s.week.weekId
             binding.textViewSectionName.text = weekName
+            binding.textViewWeekDay.text = "Wednesday"
         }
         fun bindBreakfast(s: Meal){
             binding.textViewItemSection.text = s.name
