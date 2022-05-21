@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Week (
     val description: String,
 
-    @PrimaryKey(autoGenerate = true) val weekId: Long = 0
+    @PrimaryKey(autoGenerate = false) val weekId: Long = 0
 )

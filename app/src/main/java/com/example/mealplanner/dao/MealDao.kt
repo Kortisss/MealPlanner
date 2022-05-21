@@ -95,7 +95,6 @@ interface MealDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)//todo: toDelete
     suspend fun insert(weekMealCrossRef: WeekMealCrossRef)//todo: toDelete
 
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllMondayMealCrossRef(allMondayMealCrossRef: List<MondayMealCrossRef>)
 
@@ -128,8 +127,6 @@ interface MealDao {
     suspend fun insert(saturday: Saturday)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(sunday: Sunday)
-
-
 
     //delete
     @Query("DELETE FROM Meal")
@@ -169,5 +166,73 @@ interface MealDao {
     @Query("DELETE FROM Sunday")
     suspend fun deleteSunday()
 
+    //delete whole week
+    @Query("delete from week where weekId = :id ")
+    suspend fun deleteWeekById(id: Long)
+
+    @Query("delete from MondayMealCrossRef where mondayId = :id ")
+    suspend fun deleteMondayWithMealsById(id: Long)
+    @Query("delete from Monday where mondayId = :id ")
+    suspend fun deleteMondayById(id: Long)
+
+    @Query("delete from TuesdayMealCrossRef where tuesdayId = :id ")
+    suspend fun deleteTuesdayWithMealsById(id: Long)
+    @Query("delete from Tuesday where tuesdayId = :id ")
+    suspend fun deleteTuesdayById(id: Long)
+
+    @Query("delete from WednesdayMealCrossRef where wednesdayId = :id ")
+    suspend fun deleteWednesdayWithMealsById(id: Long)
+    @Query("delete from Wednesday where wednesdayId = :id ")
+    suspend fun deleteWednesdayById(id: Long)
+
+    @Query("delete from ThursdayMealCrossRef where thursdayId = :id ")
+    suspend fun deleteThursdayWithMealsById(id: Long)
+    @Query("delete from Thursday where thursdayId = :id ")
+    suspend fun deleteThursdayById(id: Long)
+
+    @Query("delete from FridayMealCrossRef where fridayId = :id ")
+    suspend fun deleteFridayWithMealsById(id: Long)
+    @Query("delete from Friday where fridayId = :id ")
+    suspend fun deleteFridayById(id: Long)
+
+    @Query("delete from SaturdayMealCrossRef where saturdayId = :id ")
+    suspend fun deleteSaturdayWithMealsById(id: Long)
+    @Query("delete from Saturday where saturdayId = :id ")
+    suspend fun deleteSaturdayById(id: Long)
+
+    @Query("delete from SundayMealCrossRef where sundayId = :id ")
+    suspend fun deleteSundayWithMealsById(id: Long)
+    @Query("delete from Sunday where sundayId = :id ")
+    suspend fun deleteSundayById(id: Long)
+
+    @Delete
+    suspend fun deleteWeekWithMondayWithMeals(week:Week, mondayMealCrossRef: List<MondayMealCrossRef>)
+
+    @Transaction
+    @Query("")
+    suspend fun deleteWholeWeek(id: Long){
+        deleteWeekById(id)
+
+        deleteMondayWithMealsById(id)
+        deleteMondayById(id)
+
+        deleteTuesdayWithMealsById(id)
+        deleteTuesdayById(id)
+
+        deleteWednesdayWithMealsById(id)
+        deleteWednesdayById(id)
+
+        deleteThursdayWithMealsById(id)
+        deleteThursdayById(id)
+
+        deleteFridayWithMealsById(id)
+        deleteFridayById(id)
+
+        deleteSaturdayWithMealsById(id)
+        deleteSaturdayById(id)
+
+        deleteSundayWithMealsById(id)
+        deleteSundayById(id)
+    }
     //update
 }

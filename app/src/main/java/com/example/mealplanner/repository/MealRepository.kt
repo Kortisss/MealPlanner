@@ -3,10 +3,7 @@ package com.example.mealplanner.repository
 import androidx.annotation.WorkerThread
 import com.example.mealplanner.dao.MealDao
 import com.example.mealplanner.data.models.*
-import com.example.mealplanner.data.models.relations.MealWithWeek
-import com.example.mealplanner.data.models.relations.ThursdayWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithMeals
-import com.example.mealplanner.data.models.relations.WeekWithSundayWithMeals
+import com.example.mealplanner.data.models.relations.*
 
 import kotlinx.coroutines.flow.Flow
 
@@ -146,5 +143,16 @@ class MealRepository(private val mealDao: MealDao) { //repository is connected o
     @WorkerThread
     suspend fun deleteMonday(monday: Monday){
         mealDao.deleteMonday()
+    }
+
+//    @Suppress
+//    @WorkerThread
+//    suspend fun deleteWeekWithMondayWithMeals(week: Week, mondayMealCrossRef: List<MondayMealCrossRef>){
+//        mealDao.deleteWeekWithMondayWithMeals(week, mondayMealCrossRef)
+//    }
+    @Suppress
+    @WorkerThread
+    suspend fun deleteWholeWeek(id: Long){
+        mealDao.deleteWholeWeek(id)
     }
 }

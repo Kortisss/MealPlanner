@@ -1,13 +1,12 @@
 package com.example.mealplanner.ui.home
 
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.*
 import com.example.mealplanner.data.models.*
 import com.example.mealplanner.data.models.relations.*
 import com.example.mealplanner.repository.MealRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.toCollection
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: MealRepository) : ViewModel() {
@@ -22,8 +21,6 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
     val lastFridayId: LiveData<Long> = repository.loadLastFridayId.asLiveData()
     val lastSaturdayId: LiveData<Long> = repository.loadLastSaturdayId.asLiveData()
     val lastSundayId: LiveData<Long> = repository.loadLastSundayId.asLiveData()
-
-
 
     private var _weekById = MutableLiveData<List<WeekWithMeals>>()
     var weekById : LiveData<List<WeekWithMeals>> = _weekById
@@ -92,13 +89,19 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
     fun deleteMonday(monday: Monday) = viewModelScope.launch {
         repository.deleteMonday(monday)
     }
-    //-----------------example-----------------
-    //fun insert(week: Week) = viewModelScope.launch {
-    //    repository.insert(week)
-    //}
-  //  fun insert(monday: Monday) = viewModelScope.launch {
-  //          repository.insert(monday)
-  //  }
+    fun deleteWholeWeek(id: Long) = viewModelScope.launch {
+        repository.deleteWholeWeek(id)
+    }
+//    fun deleteWeekWithMondayWithMeals(week: Week, mondayMealCrossRef: List<MondayMealCrossRef>) = viewModelScope.launch {
+//        repository.deleteWeekWithMondayWithMeals(week, mondayMealCrossRef)
+//    }
+//    -----------------example-----------------
+//    fun insert(week: Week) = viewModelScope.launch {
+//        repository.insert(week)
+//    }
+//    fun insert(monday: Monday) = viewModelScope.launch {
+//            repository.insert(monday)
+//    }
 }
 class HomeViewModelFactory(private val repository: MealRepository): ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

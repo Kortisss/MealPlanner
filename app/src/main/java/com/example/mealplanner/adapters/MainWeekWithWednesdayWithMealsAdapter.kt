@@ -19,6 +19,7 @@ class MainWeekWithWednesdayWithMealsAdapter : ListAdapter<WeekWithWednesdayWithM
             val weekName = "week "+ s.week.weekId
             binding.textViewSectionName.text = weekName
             binding.textViewWeekDay.text = "Wednesday"
+            binding.btnDeleteWeek.visibility = View.GONE
         }
         fun bindBreakfast(s: Meal){
             binding.textViewItemSection.text = s.name

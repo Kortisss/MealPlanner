@@ -77,43 +77,43 @@ abstract class MealsRoomDatabase : RoomDatabase() {
             mealDao.insert(Meal("tuńczyk"))
 
             //monday
-            mealDao.insert(Monday(1))
-            mealDao.insertAllMondayMealCrossRef(listOf(MondayMealCrossRef(1,1),
-                MondayMealCrossRef(1,2), MondayMealCrossRef(1,3)
+            mealDao.insert(Monday(0))
+            mealDao.insertAllMondayMealCrossRef(listOf(MondayMealCrossRef(0,1),
+                MondayMealCrossRef(0,2), MondayMealCrossRef(0,3)
                 )
             )
             //tuesday
-            mealDao.insert(Tuesday(1))
-            mealDao.insert(TuesdayMealCrossRef(1,1))
-            mealDao.insert(TuesdayMealCrossRef(1,2))
-            mealDao.insert(TuesdayMealCrossRef(1,3))
+            mealDao.insert(Tuesday(0))
+            mealDao.insert(TuesdayMealCrossRef(0,1))
+            mealDao.insert(TuesdayMealCrossRef(0,2))
+            mealDao.insert(TuesdayMealCrossRef(0,3))
             //wednesday
-            mealDao.insert(Wednesday(1))
-            mealDao.insert(WednesdayMealCrossRef(1,1))
-            mealDao.insert(WednesdayMealCrossRef(1,5))
-            mealDao.insert(WednesdayMealCrossRef(1,4))
+            mealDao.insert(Wednesday(0))
+            mealDao.insert(WednesdayMealCrossRef(0,1))
+            mealDao.insert(WednesdayMealCrossRef(0,5))
+            mealDao.insert(WednesdayMealCrossRef(0,4))
             //thursday
-            mealDao.insert(Thursday(1))
-            mealDao.insert(ThursdayMealCrossRef(1,4))
-            mealDao.insert(ThursdayMealCrossRef(1,2))
-            mealDao.insert(ThursdayMealCrossRef(1,6))
+            mealDao.insert(Thursday(0))
+            mealDao.insert(ThursdayMealCrossRef(0,4))
+            mealDao.insert(ThursdayMealCrossRef(0,2))
+            mealDao.insert(ThursdayMealCrossRef(0,6))
             //friday
-            mealDao.insert(Friday(1))
-            mealDao.insert(FridayMealCrossRef(1,1))
-            mealDao.insert(FridayMealCrossRef(1,2))
-            mealDao.insert(FridayMealCrossRef(1,3))
+            mealDao.insert(Friday(0))
+            mealDao.insert(FridayMealCrossRef(0,1))
+            mealDao.insert(FridayMealCrossRef(0,2))
+            mealDao.insert(FridayMealCrossRef(0,3))
             //saturday
-            mealDao.insert(Saturday(1))
-            mealDao.insert(SaturdayMealCrossRef(1,3))
-            mealDao.insert(SaturdayMealCrossRef(1,2))
-            mealDao.insert(SaturdayMealCrossRef(1,1))
+            mealDao.insert(Saturday(0))
+            mealDao.insert(SaturdayMealCrossRef(0,3))
+            mealDao.insert(SaturdayMealCrossRef(0,2))
+            mealDao.insert(SaturdayMealCrossRef(0,1))
             //sunday
-            mealDao.insert(Sunday(1))
-            mealDao.insert(SundayMealCrossRef(1,3))
-            mealDao.insert(SundayMealCrossRef(1,6))
-            mealDao.insert(SundayMealCrossRef(1,5))
+            mealDao.insert(Sunday(0))
+            mealDao.insert(SundayMealCrossRef(0,3))
+            mealDao.insert(SundayMealCrossRef(0,6))
+            mealDao.insert(SundayMealCrossRef(0,5))
             //week
-            mealDao.insert(Week("dania na 1 tydzień"))
+            mealDao.insert(Week("dania na 1 tydzień",0))
 
         /*
 

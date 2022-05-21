@@ -557,11 +557,11 @@ class AddWeekDialogFragment(
             //tutaj warunki co do poprawości danych w spinnerach
             //potem dodaje cos do bazy
             if (spinnersPositionCheck.all { it }){
-                homeViewModel.insertDayweeks(Monday(), Tuesday(), Wednesday(), Thursday(),
-                    Friday(), Saturday(), Sunday()
+                homeViewModel.insertDayweeks(Monday(freshMondayId), Tuesday(freshTuesdayId), Wednesday(freshWednesdayId), Thursday(freshThursdayId),
+                    Friday(freshFridayId), Saturday(freshSaturdayId), Sunday(freshSundayId)
                 )
 //            inserting  week + lists with meals
-                homeViewModel.insertOneWeek(Week("tydzień $freshWeekId opis"))
+                homeViewModel.insertOneWeek(Week("tydzień $freshWeekId opis",freshWeekId))
                 homeViewModel.insertWholeWeek(
                     mondayList,
                     tuesdayList,
@@ -574,15 +574,15 @@ class AddWeekDialogFragment(
                 dismiss()
                 Toast.makeText(requireContext(), "przeszło", Toast.LENGTH_SHORT).show()
 //            inserting one day of the week
-                homeViewModel.insertWholeWeek(
-                    listOf(MondayMealCrossRef(freshMondayId,2),MondayMealCrossRef(freshMondayId,5),MondayMealCrossRef(freshMondayId,1)),
-                    listOf(TuesdayMealCrossRef(freshTuesdayId,3),TuesdayMealCrossRef(freshTuesdayId,2),TuesdayMealCrossRef(freshTuesdayId,4)),
-                    listOf(WednesdayMealCrossRef(freshWednesdayId,4),WednesdayMealCrossRef(freshWednesdayId,1),WednesdayMealCrossRef(freshWednesdayId,2)),
-                    listOf(ThursdayMealCrossRef(freshThursdayId,1),ThursdayMealCrossRef(freshThursdayId,5),ThursdayMealCrossRef(freshThursdayId,6)),
-                    listOf(FridayMealCrossRef(freshFridayId,2),FridayMealCrossRef(freshFridayId,5),FridayMealCrossRef(freshFridayId,1)),
-                    listOf(SaturdayMealCrossRef(freshSaturdayId,4), SaturdayMealCrossRef(freshSaturdayId,6), SaturdayMealCrossRef(freshSaturdayId,1)),
-                    listOf(SundayMealCrossRef(freshSundayId,1), SundayMealCrossRef(freshSundayId,2),SundayMealCrossRef(freshSundayId,5))
-                )
+//                homeViewModel.insertWholeWeek(
+//                    listOf(MondayMealCrossRef(freshMondayId,2),MondayMealCrossRef(freshMondayId,5),MondayMealCrossRef(freshMondayId,1)),
+//                    listOf(TuesdayMealCrossRef(freshTuesdayId,3),TuesdayMealCrossRef(freshTuesdayId,2),TuesdayMealCrossRef(freshTuesdayId,4)),
+//                    listOf(WednesdayMealCrossRef(freshWednesdayId,4),WednesdayMealCrossRef(freshWednesdayId,1),WednesdayMealCrossRef(freshWednesdayId,2)),
+//                    listOf(ThursdayMealCrossRef(freshThursdayId,1),ThursdayMealCrossRef(freshThursdayId,5),ThursdayMealCrossRef(freshThursdayId,6)),
+//                    listOf(FridayMealCrossRef(freshFridayId,2),FridayMealCrossRef(freshFridayId,5),FridayMealCrossRef(freshFridayId,1)),
+//                    listOf(SaturdayMealCrossRef(freshSaturdayId,4), SaturdayMealCrossRef(freshSaturdayId,6), SaturdayMealCrossRef(freshSaturdayId,1)),
+//                    listOf(SundayMealCrossRef(freshSundayId,1), SundayMealCrossRef(freshSundayId,2),SundayMealCrossRef(freshSundayId,5))
+//                )
                 Toast.makeText(requireContext(), "Week has been added", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(), "Fill in the blanks before save!", Toast.LENGTH_SHORT).show()
@@ -590,28 +590,61 @@ class AddWeekDialogFragment(
 
         }
             homeViewModel.lastMondayId.observe(viewLifecycleOwner){
-                freshMondayId = it + 1
+                freshMondayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastTuesdayId.observe(viewLifecycleOwner){
-                freshTuesdayId = it + 1
+                freshTuesdayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastWednesdayId.observe(viewLifecycleOwner){
-                freshWednesdayId = it + 1
+                freshWednesdayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastThursdayId.observe(viewLifecycleOwner){
-                freshThursdayId = it+ 1
+                freshThursdayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastFridayId.observe(viewLifecycleOwner){
-                freshFridayId = it + 1
+                freshFridayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastSaturdayId.observe(viewLifecycleOwner){
-                freshSaturdayId = it + 1
+                freshSaturdayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
+
             }
             homeViewModel.lastSundayId.observe(viewLifecycleOwner){
-                freshSundayId = it + 1
+                freshSundayId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
             homeViewModel.lastWeekId.observe(viewLifecycleOwner){
-                freshWeekId = it + 1
+                freshWeekId = if(it == null){
+                    0
+                }else{
+                    it + 1
+                }
             }
     }
 }

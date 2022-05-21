@@ -21,6 +21,7 @@ class MainWeekWithSaturdayWithMealsAdapter : ListAdapter<WeekWithSaturdayWithMea
             binding.textViewSectionName.text = weekName
             //binding.childRecyclerView.adapter = ChildWeekWithSaturdayWithMealsAdapter(s.saturday)
             binding.textViewWeekDay.text = "Saturday"
+            binding.btnDeleteWeek.visibility = View.GONE
         }
         fun bindBreakfast(s: Meal){
             binding.textViewItemSection.text = s.name

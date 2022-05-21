@@ -5,5 +5,5 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Thursday (
-    @PrimaryKey(autoGenerate = true) val thursdayId :Long = 0
+    @PrimaryKey(autoGenerate = false) val thursdayId :Long = 0
 )
