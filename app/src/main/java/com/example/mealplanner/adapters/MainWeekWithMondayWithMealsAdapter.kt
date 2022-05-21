@@ -57,6 +57,16 @@ class MainWeekWithMondayWithMealsAdapter(private val onClickListener: OnClickLis
         holder.btnDeleteWeek.setOnClickListener{
             viewModel.deleteWholeWeek(currentItem.week.weekId)
 
+            viewModel.weekById.let { viewModel.getWeekWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithMondayWithMeals.let { viewModel.getWeekWithMondayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithTuesdayWithMeals.let { viewModel.getWeekWithTuesdayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithWednesdayWithMeals.let { viewModel.getWeekWithWednesdayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithThursdayWithMeals.let { viewModel.getWeekWithThursdayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithFridayWithMeals.let { viewModel.getWeekWithFridayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithSaturdayWithMeals.let { viewModel.getWeekWithSaturdayWithMeals(currentItem.week.weekId) }
+            viewModel.weekWithSundayWithMeals.let { viewModel.getWeekWithSundayWithMeals(currentItem.week.weekId) }
+
+            viewModel.setWeekToDisplay.value.let { viewModel.getWeekWithMeals(currentItem.week.weekId-1) }
         }
         holder.bind(currentItem)
 

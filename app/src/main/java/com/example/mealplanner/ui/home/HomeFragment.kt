@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
 import com.example.mealplanner.adapters.*
-import com.example.mealplanner.data.models.Meal
+import com.example.mealplanner.data.models.*
 import com.example.mealplanner.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
@@ -30,6 +30,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         homeViewModel.allWeeks.observe(viewLifecycleOwner){
+            if (it.isEmpty()){
+                homeViewModel.setWeekToDisplay.value = 0
+            }
             val weeksAdapter = WeeksAdapter(it, WeeksAdapter.OnClickListener{ click ->
                 homeViewModel.setWeekToDisplay.value = click.weekId
                 lifecycleScope.launch(){
@@ -42,7 +45,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.weekWithSaturdayWithMeals.let { homeViewModel.getWeekWithSaturdayWithMeals(click.weekId) }
                     homeViewModel.weekWithSundayWithMeals.let { homeViewModel.getWeekWithSundayWithMeals(click.weekId) }
                 }
-                Toast.makeText(requireContext(),click.weekId.toString(), Toast.LENGTH_SHORT).show()
             })
             binding.apply {
                 recyclerViewOfWeeks.apply {
@@ -51,6 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+
         homeViewModel.allMeals.observe(viewLifecycleOwner){
             mealList = it
         }
@@ -136,11 +139,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.editWeekButton.setOnClickListener{
-            Toast.makeText(requireContext(), "klik", Toast.LENGTH_SHORT).show()
-            val progressDialog = ProgressDialogFragment()
-            progressDialog.show(childFragmentManager,"progressDialogFragment")
+//            val progressDialog = ProgressDialogFragment()
+//            progressDialog.show(childFragmentManager,"progressDialogFragment")
+            lifecycleScope.launch{
+                Toast.makeText(requireContext(), "klik", Toast.LENGTH_SHORT).show()
+                homeViewModel.insertDayweeks(Monday(homeViewModel.setWeekToDisplay.value!!+1), Tuesday(homeViewModel.setWeekToDisplay.value!!+1), Wednesday(homeViewModel.setWeekToDisplay.value!!+1), Thursday(homeViewModel.setWeekToDisplay.value!!+1),
+                    Friday(homeViewModel.setWeekToDisplay.value!!+1), Saturday(homeViewModel.setWeekToDisplay.value!!+1), Sunday(homeViewModel.setWeekToDisplay.value!!+1)
+                )
+//            inserting  week + lists with meals
+                homeViewModel.insertOneWeek(Week("tydzień fff opis",homeViewModel.setWeekToDisplay.value!!+1))
+                homeViewModel.insertWholeWeek(
+                    listOf(MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
+                    listOf(SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1), SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3))
+                )
+                Toast.makeText(requireContext(), "przeszło", Toast.LENGTH_SHORT).show()
+            }
         }
-        
+
         return binding.root
     }
 
