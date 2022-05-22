@@ -208,6 +208,9 @@ interface MealDao {
     @Delete
     suspend fun deleteWeekWithMondayWithMeals(week:Week, mondayMealCrossRef: List<MondayMealCrossRef>)
 
+    @Delete
+    suspend fun deleteMealById(meal: Meal)
+
     @Transaction
     @Query("")
     suspend fun deleteWholeWeek(id: Long){

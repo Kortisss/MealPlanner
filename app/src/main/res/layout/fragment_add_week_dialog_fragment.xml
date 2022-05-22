@@ -807,9 +807,13 @@
 
         <Button
             android:id="@+id/buttonAddWeek"
+            style="addWeekButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/addWeekButton" />
+            android:backgroundTint="@color/teal_200"
+            android:text="@string/addWeekButton"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 </ScrollView>

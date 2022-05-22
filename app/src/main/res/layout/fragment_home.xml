@@ -150,8 +150,8 @@
             tools:ignore="ImageContrastCheck" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            style="homeFloatingButton"
             android:id="@+id/editWeekButton"
+            style="homeFloatingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -161,6 +161,20 @@
             android:src="@drawable/ic_baseline_edit_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/addWeekButton"
+            tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnGoToMealList"
+            style="homeFloatingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/editWeekButton"
+            android:src="@drawable/ic_baseline_set_meal_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

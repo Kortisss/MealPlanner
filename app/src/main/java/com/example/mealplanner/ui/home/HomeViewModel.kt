@@ -92,6 +92,12 @@ class HomeViewModel(private val repository: MealRepository) : ViewModel() {
     fun deleteWholeWeek(id: Long) = viewModelScope.launch {
         repository.deleteWholeWeek(id)
     }
+    fun insertMeal(meal: Meal) = viewModelScope.launch {
+        repository.insert(meal)
+    }
+    fun deleteMealById(meal: Meal) = viewModelScope.launch {
+        repository.deleteMealById(meal)
+    }
 //    fun deleteWeekWithMondayWithMeals(week: Week, mondayMealCrossRef: List<MondayMealCrossRef>) = viewModelScope.launch {
 //        repository.deleteWeekWithMondayWithMeals(week, mondayMealCrossRef)
 //    }

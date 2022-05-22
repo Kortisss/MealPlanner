@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/background_for_section.xml" value="0.152" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/gradient_background.xml" value="0.1" />
+        <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/ic_baseline_delete_30.xml" value="0.1715" />
+        <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/ic_baseline_delete_50.xml" value="0.1715" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/rectangle_outline.xml" value="0.273" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/drawable/weekdays_rectangle.xml" value="0.1305" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -12,8 +14,11 @@
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/fragment_add_week_dialog_fragment.xml" value="0.33547971667739857" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/fragment_add_weel_dialog_fragment.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/fragment_meals_grid.xml" value="0.27890625" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/inner_section_row.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/insert_meal_dialog_fragment.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/meal_item.xml" value="0.33" />
+        <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/meal_list.xml" value="0.30427350427350425" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/progress_dialog_fragment.xml" value="0.34074074074074073" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/section_item.xml" value="0.33" />
         <entry key="..\:/Users/micha/OneDrive/Pulpit/studia/semestr6/AplikacjeMobilneAndroid/MealPlanner/app/src/main/res/layout/section_row.xml" value="0.33" />

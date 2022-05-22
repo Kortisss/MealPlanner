@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealplanner.R
 import com.example.mealplanner.adapters.*
@@ -160,7 +161,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 Toast.makeText(requireContext(), "przeszło", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.btnGoToMealList.setOnClickListener{
+            val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+            val navController = navHostFragment.navController
 
+//          Navigate using the IDs you defined in your Nav Graph
+            navController.navigate(R.id.mealsGridFragment)
+        }
         return binding.root
     }
 

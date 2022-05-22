@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:android="http://schemas.android.com/apk/res/android"
+app:startDestination="@id/homeFragment"
+android:id="@+id/mobile_navigation">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mealplanner.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_mealsGridFragment"
+            app:destination="@id/mealsGridFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealsGridFragment"
+        android:name="com.example.mealplanner.ui.home.MealsGridFragment"
+        android:label="MealsGridFragment"
+        tools:layout="@layout/fragment_meals_grid"/>
+
+</navigation>

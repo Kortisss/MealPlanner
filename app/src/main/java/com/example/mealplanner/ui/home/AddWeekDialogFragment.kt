@@ -554,8 +554,6 @@ class AddWeekDialogFragment(
         }
 
         btnAddWeek.setOnClickListener{
-            //tutaj warunki co do poprawości danych w spinnerach
-            //potem dodaje cos do bazy
             if (spinnersPositionCheck.all { it }){
                 homeViewModel.insertDayweeks(Monday(freshMondayId), Tuesday(freshTuesdayId), Wednesday(freshWednesdayId), Thursday(freshThursdayId),
                     Friday(freshFridayId), Saturday(freshSaturdayId), Sunday(freshSundayId)
