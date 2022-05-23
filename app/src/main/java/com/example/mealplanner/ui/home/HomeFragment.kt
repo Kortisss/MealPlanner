@@ -143,20 +143,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //            val progressDialog = ProgressDialogFragment()
 //            progressDialog.show(childFragmentManager,"progressDialogFragment")
             lifecycleScope.launch{
-                Toast.makeText(requireContext(), "klik", Toast.LENGTH_SHORT).show()
+                val meal1 : Meal?
+                val meal2 : Meal?
+                val meal3 : Meal?
+                if (homeViewModel.allMeals.value?.size!! >= 3){
+                    meal1 = homeViewModel.allMeals.value?.get(0)
+                    meal2 = homeViewModel.allMeals.value?.get(1)
+                    meal3 = homeViewModel.allMeals.value?.get(2)
+                }else{
+                    Toast.makeText(requireContext(), "Add a least 3 meals!", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
                 homeViewModel.insertDayweeks(Monday(homeViewModel.setWeekToDisplay.value!!+1), Tuesday(homeViewModel.setWeekToDisplay.value!!+1), Wednesday(homeViewModel.setWeekToDisplay.value!!+1), Thursday(homeViewModel.setWeekToDisplay.value!!+1),
                     Friday(homeViewModel.setWeekToDisplay.value!!+1), Saturday(homeViewModel.setWeekToDisplay.value!!+1), Sunday(homeViewModel.setWeekToDisplay.value!!+1)
                 )
 //            inserting  week + lists with meals
                 homeViewModel.insertOneWeek(Week("tydzień fff opis",homeViewModel.setWeekToDisplay.value!!+1))
+
                 homeViewModel.insertWholeWeek(
-                    listOf(MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3)),
-                    listOf(SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,1), SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,2),SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,3))
+                    listOf(MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1, meal1!!.mealId),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2!!.mealId),MondayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3!!.mealId)),
+                    listOf(TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal1.mealId),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId),TuesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId)),
+                    listOf(WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal1.mealId),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId),WednesdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId)),
+                    listOf(ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal1.mealId),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId),ThursdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId)),
+                    listOf(FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1, meal1.mealId),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId),FridayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId)),
+                    listOf(SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1, meal1.mealId), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId), SaturdayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId)),
+                    listOf(SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1, meal1.mealId), SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal2.mealId),SundayMealCrossRef(homeViewModel.setWeekToDisplay.value!!+1,meal3.mealId))
                 )
                 Toast.makeText(requireContext(), "przeszło", Toast.LENGTH_SHORT).show()
             }
